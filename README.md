@@ -1,4 +1,4 @@
-# My Flutter Music Player
+# My Music Player
 
 ## Supported Devices
 
