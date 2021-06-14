@@ -22,12 +22,20 @@ class TracksBloc extends Bloc<TrackEvent, TrackState> {
         yield TrackLoading();
         try {
           final apiResponse = await repository.searchBy(event.query);
-          yield TrackLoaded(
-              query: event.query, tracks: apiResponse.filteredResult);
+
+          if (apiResponse.filteredResult.isEmpty) {
+            yield TrackInitial();
+          } else {
+            yield TrackLoaded(
+                query: event.query, tracks: apiResponse.filteredResult);
+          }
         } catch (e) {
           yield TrackFailure();
         }
       }
+    }
+    if (event is ResetTrack) {
+      yield TrackInitial();
     }
   }
 }

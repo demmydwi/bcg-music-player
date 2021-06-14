@@ -5,6 +5,10 @@ abstract class TrackEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ResetTrack extends TrackEvent {
+
+}
+
 class FetchTrack extends TrackEvent {
 
   final String query;

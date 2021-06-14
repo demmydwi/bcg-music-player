@@ -44,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _typingTimer = Timer(Duration(milliseconds: _typingDebounce), () {
       if (query.isNotEmpty) {
         BlocProvider.of<TracksBloc>(context).add(FetchTrack(query: query));
+      } else {
+        BlocProvider.of<TracksBloc>(context).add(ResetTrack());
       }
     });
   }
